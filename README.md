@@ -89,8 +89,10 @@ Once you have ran the scraping
  
  
  
- *** 10 Oldest Players ***
+*** 10 Oldest Players ***
+
         df2.sort_values('age',ascending=False).head(10)
         
+        ![image](https://user-images.githubusercontent.com/4700433/130435259-04b2fa0d-bc40-4932-84c5-79f078a77a9f.png)
         
 
