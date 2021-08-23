@@ -2,6 +2,8 @@
 Using Python to scrape some basic player information from www.premierleague.com and then use Pandas to analyse said data.
 Note : My understanding is the squad data on this site can change at any time so your results might be different
 
+***Improvement : Calculate age to finer degree than just years***
+
 The was developed in Jupyter Notebook and this walkthrough willl assume you are doing the same
 
 Once you have ran the scraping 
@@ -35,7 +37,7 @@ Once you have ran the scraping
     dtypes: object(11)
     memory usage: 49.8+ KB
 
-***A total of 578 player.***
+*** A total of 578 player. ***
 
 6 without shirt number
 
@@ -50,7 +52,7 @@ Once you have ran the scraping
 
 
 
-***Cleanup Data***
+## Cleanup Data ##
 1. Remove spaces and newline from dob, appearances, goals, wins and losses columns
 2. Change type of dob to date
 3. change type of appearances, goals, wins, losses to int
@@ -89,10 +91,65 @@ Once you have ran the scraping
  
  
  
-*** 10 Oldest Players ***
+### 10 Oldest Players ###
 
         df2.sort_values('age',ascending=False).head(10)
         
-        ![image](https://user-images.githubusercontent.com/4700433/130435259-04b2fa0d-bc40-4932-84c5-79f078a77a9f.png)
-        
+![image](https://user-images.githubusercontent.com/4700433/130436618-358f99d4-fbe7-493b-8b74-4cb6e696f4d0.png)
 
+
+### 10 Youngest Players ###
+
+        df2.sort_values('age',ascending=True).head(10)
+        
+![image](https://user-images.githubusercontent.com/4700433/130437043-3be3caf6-ee97-4f6a-bcfc-40ab364cf57c.png)
+
+
+### Squad Sizes ###
+
+        df2.groupby(['club'])['club'].count().sort_values(ascending=False)
+        
+![image](https://user-images.githubusercontent.com/4700433/130437398-693b09f5-ea69-4b1e-a3c4-80ff3b8692e8.png)
+
+
+### Team's Average Player Age ###
+
+        plt.ylim([20, 30])
+        df2.groupby(['club'])['age'].mean().sort_values(ascending=False).plot.bar()
+        
+![image](https://user-images.githubusercontent.com/4700433/130438078-0d0cbd54-15d8-433d-b4c5-057bacf831b0.png)
+
+
+### Burnley appear to not only have one of the highest average player ages but also the owest number of registered players ###
+
+
+### Top 10 Premiership Appearances ###
+        df2.sort_values('appearances',ascending=False).head(10)
+        
+![image](https://user-images.githubusercontent.com/4700433/130438782-3e282917-f50e-4b23-b484-e56b6f8db58d.png)
+
+
+### Collective Premiership Appearances per Club ###
+        df2.groupby(['club'])['appearances'].sum().sort_values(ascending=False)
+        
+![image](https://user-images.githubusercontent.com/4700433/130439559-31c3f20e-8a7d-4609-9ae3-03da86f3efb3.png)
+
+        df2.groupby(['club'])['appearances'].sum().sort_values(ascending=False).plot.bar()
+        
+![image](https://user-images.githubusercontent.com/4700433/130439689-e9507bf7-4c8d-4c2e-b79f-210c41b9b1ca.png)
+
+
+### 10 Tallest Playes ###
+        df2.sort_values('height',ascending=False).head(10)
+![image](https://user-images.githubusercontent.com/4700433/130440008-647df661-9475-4b8a-8237-671dceff6624.png)
+
+        
+        
+        
+### 10 Shortest Playes ###
+        df2.sort_values('height',ascending=True).head(10)
+![image](https://user-images.githubusercontent.com/4700433/130440077-7c5fde84-2eca-4a52-8a47-78d397bdef1e.png)
+
+
+### Most Premiership Goals ###
+        
