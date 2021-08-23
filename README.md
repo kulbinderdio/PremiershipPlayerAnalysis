@@ -151,5 +151,9 @@ Once you have ran the scraping
 ![image](https://user-images.githubusercontent.com/4700433/130440077-7c5fde84-2eca-4a52-8a47-78d397bdef1e.png)
 
 
-
+### Nationality totals of Players ###
+        pd.set_option('display.max_rows', 100)
+        df.groupby(['nationality'])['club'].count().sort_values(ascending=False)
+        
+        
         
