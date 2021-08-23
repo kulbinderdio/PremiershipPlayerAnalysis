@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 from lxml import html
 import numpy as np
+import matplotlib.pyplot as plt
 
 user_agent = {'User-agent': 'Mozilla/5.0'}
 response = requests.get('https://www.premierleague.com/clubs', headers = user_agent)
