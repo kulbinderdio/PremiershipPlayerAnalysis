@@ -157,3 +157,9 @@ Once you have ran the scraping
         
         
         
+        
+ ### Nationality totals per club ###       
+        pd.set_option('display.max_rows', 500)
+        df.groupby(['club','nationality'])['nationality'].count()
+        
+        
